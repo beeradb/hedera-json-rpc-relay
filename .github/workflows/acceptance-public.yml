@@ -159,7 +159,7 @@ jobs:
           - websocket-batch-1
           - websocket-batch-2
           - websocket-batch-3
-    runs-on: smart-contracts-linux-medium
+    runs-on: ubuntu-latest
     steps:
       - name: Get full results
         if: ${{ !cancelled() && env.RUN_FULL_SUITE }}
@@ -169,7 +169,7 @@ jobs:
     name: Get Partial Results
     needs:
       - release-tests
-    runs-on: smart-contracts-linux-medium
+    runs-on: ubuntu-latest
     steps:
       - name: Get full results
         if: ${{ !cancelled() && !env.RUN_FULL_SUITE }}
@@ -177,7 +177,7 @@ jobs:
 
   publish_results:
     name: Publish Results
-    runs-on: smart-contracts-linux-medium
+    runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0

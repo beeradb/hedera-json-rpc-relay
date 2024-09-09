@@ -20,7 +20,8 @@ on:
           - testnet
           - previewnet
 
-
+env:
+  RUN_FULL_SUITE: ${{ inputs.network != 'mainnet' }}
 
 jobs:
   api_batch_1:
@@ -143,15 +144,9 @@ jobs:
       operator_id: ${{ inputs.operator_id }}
       operator_key: ${{ inputs.operator_key }}
 
-  publish_full_results:
-    name: Publish Results
-    env:
-      RUN_FULL_SUITE: {{ inputs.network != "mainnet" }}
-    runs-on: smart-contracts-linux-medium
-    steps:
-      - name: Get full results
-        if: ${{ !cancelled() && $env.RUN_FULL_SUITE }}
-        needs:
+  get_full_results:
+    name: Get Full Results
+    needs:
           - api_batch_1
           - api_batch_2
           - api_batch_3
@@ -164,14 +159,26 @@ jobs:
           - websocket-batch-1
           - websocket-batch-2
           - websocket-batch-3
+    runs-on: smart-contracts-linux-medium
+    steps:
+      - name: Get full results
+        if: ${{ !cancelled() && env.RUN_FULL_SUITE }}
         run: echo "Full results"
 
-      - name: Get partial results
-        if: ${{ !cancelled() && !$env.RUN_FULL_SUITE }}
-        needs:
-          - release-tests
-        run: echo "Partial results"
+  get_partial_results:
+    name: Get Partial Results
+    needs:
+      - release-tests
+    runs-on: smart-contracts-linux-medium
+    steps:
+      - name: Get full results
+        if: ${{ !cancelled() && !env.RUN_FULL_SUITE }}
+        run: echo "Full results"
 
+  publish_results:
+    name: Publish Results
+    runs-on: smart-contracts-linux-medium
+    steps:
       - name: Harden Runner
         uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0
         with:

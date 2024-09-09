@@ -20,11 +20,10 @@ on:
           - testnet
           - previewnet
 
-jobs:
-  steps:
-    env_vars:
-      RUN_FULL_SUITE: {{ inputs.network != "mainnet" }}
+env:
+  RUN_FULL_SUITE: {{ inputs.network != "mainnet" }}
 
+jobs:
   api_batch_1:
     name: API Batch 1
     uses: ./.github/workflows/acceptance-workflow.yml

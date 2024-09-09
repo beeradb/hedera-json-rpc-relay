@@ -164,11 +164,13 @@ jobs:
           - websocket-batch-1
           - websocket-batch-2
           - websocket-batch-3
+        run: echo "Full results"
 
       - name: Get partial results
         if: ${{ !cancelled() && !$env.RUN_FULL_SUITE }}
         needs:
           - release-tests
+        run: echo "Partial results"
 
       - name: Harden Runner
         uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0

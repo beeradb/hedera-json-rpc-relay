@@ -28,7 +28,7 @@ jobs:
   api_batch_1:
     name: API Batch 1
     uses: ./.github/workflows/acceptance-workflow.yml
-    when: {{ $env.RUN_FULL_SUITE }}
+    if: {{ $env.RUN_FULL_SUITE }}
     with:
       testfilter: api_batch1
       envfile: ${{ inputs.network }}Acceptance.env
@@ -38,7 +38,7 @@ jobs:
   api_batch_2:
     name: API Batch 2
     uses: ./.github/workflows/acceptance-workflow.yml
-    when: {{ $env.RUN_FULL_SUITE }}
+    if: {{ $env.RUN_FULL_SUITE }}
     with:
       testfilter: api_batch2
       envfile: ${{ inputs.network }}Acceptance.env
@@ -48,7 +48,7 @@ jobs:
   api_batch_3:
     name: API Batch 3
     uses: ./.github/workflows/acceptance-workflow.yml
-    when: {{ $env.RUN_FULL_SUITE }}
+    if: {{ $env.RUN_FULL_SUITE }}
     with:
       testfilter: api_batch3
       envfile: ${{ inputs.network }}Acceptance.env
@@ -58,7 +58,7 @@ jobs:
   erc20:
     name: ERC20
     uses: ./.github/workflows/acceptance-workflow.yml
-    when: {{ $env.RUN_FULL_SUITE }}
+    if: {{ $env.RUN_FULL_SUITE }}
     with:
       testfilter: erc20
       envfile: ${{ inputs.network }}Acceptance.env
@@ -68,7 +68,7 @@ jobs:
   ratelimiter:
     name: Rate Limiter
     uses: ./.github/workflows/acceptance-workflow.yml
-    when: {{ $env.RUN_FULL_SUITE }}
+    if: {{ $env.RUN_FULL_SUITE }}
     with:
       testfilter: ratelimiter
       envfile: ${{ inputs.network }}Acceptance.env
@@ -78,7 +78,7 @@ jobs:
   tokencreate:
     name: Token Create
     uses: ./.github/workflows/acceptance-workflow.yml
-    when: {{ $env.RUN_FULL_SUITE }}
+    if: {{ $env.RUN_FULL_SUITE }}
     with:
       testfilter: tokencreate
       envfile: ${{ inputs.network }}Acceptance.env
@@ -88,7 +88,7 @@ jobs:
   tokenmanagement:
     name: Token Management
     uses: ./.github/workflows/acceptance-workflow.yml
-    when: {{ $env.RUN_FULL_SUITE }}
+    if: {{ $env.RUN_FULL_SUITE }}
     with:
       testfilter: tokenmanagement
       envfile: ${{ inputs.network }}Acceptance.env
@@ -98,7 +98,7 @@ jobs:
   htsprecompilev1:
     name: Precompile
     uses: ./.github/workflows/acceptance-workflow.yml
-    when: {{ $env.RUN_FULL_SUITE }}
+    if: {{ $env.RUN_FULL_SUITE }}
     with:
       testfilter: htsprecompilev1
       envfile: ${{ inputs.network }}Acceptance.env
@@ -108,7 +108,7 @@ jobs:
   precompilecalls:
     name: Precompile
     uses: ./.github/workflows/acceptance-workflow.yml
-    when: {{ $env.RUN_FULL_SUITE }}
+    if: {{ $env.RUN_FULL_SUITE }}
     with:
       testfilter: precompile
       envfile: ${{ inputs.network }}Acceptance.env
@@ -118,7 +118,7 @@ jobs:
   websocket-batch-1:
     name: Websocket Batch 1
     uses: ./.github/workflows/acceptance-workflow.yml
-    when: {{ $env.RUN_FULL_SUITE }}
+    if: {{ $env.RUN_FULL_SUITE }}
     with:
       testfilter: ws_batch1
       test_ws_server: true
@@ -139,7 +139,7 @@ jobs:
   websocket-batch-3:
     name: Websocket Batch 3
     uses: ./.github/workflows/acceptance-workflow.yml
-    when: {{ $env.RUN_FULL_SUITE }}
+    if: {{ $env.RUN_FULL_SUITE }}
     with:
       testfilter: ws_batch3
       test_ws_server: true
